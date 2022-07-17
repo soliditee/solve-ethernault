@@ -1,2 +1,2 @@
 # solve-ethernault
-Solidity contracts that solve the ethernault CTF game
+Solidity contracts that help solve the [Ethernault](https://ethernaut.openzeppelin.com/) CTF game
