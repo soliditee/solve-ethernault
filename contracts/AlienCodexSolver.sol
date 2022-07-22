@@ -4,7 +4,7 @@ pragma solidity ^0.6.0;
 // 1) From the decomplied code below, or using web3.eth.getStorageAt(), confirmed that "owner" is stored in slot 0, together with the "contact" flag
 // 2) Use retract() to underflow the codex counter, so that the array size becomes max(uint256) (0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
 // 3) It's easy to find out that codex is stored in slot 1, so the location of codex[0] is web3.utils.soliditySha3([slotNumber]) for dynamic arrays
-// Reference:  https://medium.com/coinmonks/decoding-the-memory-of-an-ethereum-contract-52c256f83f07 
+// Reference:  https://medium.com/coinmonks/decoding-the-memory-of-an-ethereum-contract-52c256f83f07
 // and https://medium.com/@dariusdev/how-to-read-ethereum-contract-storage-44252c8af925
 // 4) The storage slot of codex[N] is web3.utils.soliditySha3(1) + N, now we just need to basic maths to figure out N so that:
 //    web3.utils.soliditySha3(1) + N == 0 (overflowing)
@@ -13,6 +13,7 @@ pragma solidity ^0.6.0;
 // 6) Send the calculated N and the padded player address to revise()
 // Notes: bytes32 is the same size as uint256, also the same size as one memory slot
 
+/*
 contract AlienCodexDecompiled {
     function main() {
         memory[0x40:0x60] = 0x80;
@@ -284,3 +285,4 @@ contract AlienCodexDecompiled {
         // Error: Could not resolve method call return address!
     }
 }
+*/
