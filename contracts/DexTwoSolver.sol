@@ -74,6 +74,7 @@ contract SwappableTokenTwo is ERC20 {
         super._approve(owner, spender, amount);
     }
 
+    // Create a new function to bypass the error "... approve is not a function" when running on local hardhat
     function approveNew(
         address owner,
         address spender,

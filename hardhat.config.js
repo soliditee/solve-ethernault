@@ -3,12 +3,8 @@ require("dotenv").config()
 require("hardhat-deploy")
 
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || ""
-const GOERLI_RPC_URL =
-    process.env.GOERLI_RPC_URL ||
-    "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
-const RINKEBY_RPC_URL =
-    process.env.RINKEBY_RPC_URL ||
-    "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
+const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL || "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
+const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL || "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
 const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
 
@@ -54,7 +50,7 @@ module.exports = {
                 version: "0.7.0",
             },
             {
-                version: "0.6.6",
+                version: "0.6.8",
             },
         ],
     },
