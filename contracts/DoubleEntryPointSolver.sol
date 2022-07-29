@@ -139,4 +139,22 @@ contract DoubleEntryPoint is ERC20("DoubleEntryPointToken", "DET"), DelegateERC2
     }
 }
 
-// TODO: write a bot that reads msg.data of delegateTransfer() and detect  origSender and to, then prevent the tx if origSender == vault and to  == sweptTokensRecipient
+contract DETBot is IDetectionBot {
+    bytes public s_origSender;
+    bytes public s_receiver;
+
+    function setAddressForPrevention(bytes calldata origSender, bytes calldata tokensRecipient) external {
+        s_origSender = origSender;
+        s_receiver = tokensRecipient;
+    }
+
+    function handleTransaction(address user, bytes calldata msgData) external override {
+        bytes memory toAddress = bytes(msgData[16:36]);
+        bytes memory origSender = bytes(msgData[80:100]);
+        if (keccak256(s_origSender) == keccak256(origSender) && keccak256(toAddress) == keccak256(s_receiver)) {
+            // Prevent sending from vault to sweptTokensRecipient
+            IForta forta = IForta(msg.sender);
+            forta.raiseAlert(user);
+        }
+    }
+}
